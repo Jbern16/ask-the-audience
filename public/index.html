@@ -2,10 +2,21 @@
 <html>
   <head>
     <title>Ask the Audience</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <h1>Ask The Audience! Letters Woo!</h1>
     <div id="connection-count"></div>
     <div id="status-message"></div>
+    <h3>Vote for Your Choice!</h3>
+    <div id="choices">
+      <button>A</button>
+      <button>B</button>
+      <button>C</button>
+      <button>D</button>
+    </div>
+    <div id="user-vote"></div>
+    <ul id="voteTally">Current Count:</ul>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/client.js"></script>
   </body>

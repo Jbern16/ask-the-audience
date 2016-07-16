@@ -1,0 +1,23 @@
+body {
+    width: 50%;
+    margin: auto;
+    font-family: monospace;
+    text-align: center;
+}
+
+#connection-count {
+    font-size: 2em;
+}
+
+#status-message {
+    font-size: 1.5em;        
+}
+
+#userVote {
+    padding-top: 5%;
+}
+
+#choices {
+    padding: 5%;
+    background-color: red;
+}
