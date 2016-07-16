@@ -31,15 +31,6 @@ socket.on('voteCount', function(votes) {
   }
 })
 
-socket.on('voteCountAll', function(votes){
-  for (var vote in votes) {
-    var textNode = document.createTextNode(`${vote}: ${votes[vote]}`)
-    voteTallyAll.appendChild(textNode)
-    var br = document.createElement("br")
-    voteTallyAll.appendChild(br)
-  }
-})
-
 socket.on('userVote', function(vote) {
   userVote.innerText = `You just voted for ${vote}`
 })

@@ -11,7 +11,7 @@ const socketIo = require('socket.io');
 const io = socketIo(server);
 var votes = {};
 
-function countVotes(votes) {
+const countVotes = function(votes) {
   var voteCount = {
     A: 0,
     B: 0,
@@ -43,8 +43,7 @@ io.on('connection', function (socket) {
       votes[socket.id] = message;
       console.log(message)
       socket.emit('userVote', message)
-      socket.emit('voteCount', countVotes(votes));
-      io.socket.emit('voteCountAll', countVotes(votes));
+      socket.emit('voteCount', countVotes(votes)); 
     }
   })
 
@@ -57,9 +56,11 @@ io.on('connection', function (socket) {
 });
 
 
-
-
-module.exports = server;
+module.exports = {
+  server: server,
+  countVotes: countVotes,
+  votes: votes
+}
 
 
 
