@@ -1,19 +1,15 @@
-var assert = require('chai').assert
-const app = require('../server.js')
+var assert = require('chai').assert;
+var app = require('../server.js');
 
 describe('Votes', function(){
-    describe('voteObejct can be added to', function(){
+    describe('voteObject can be added to', function(){
         it('should be instantiated with empty object', function(){
-            app.votes.should.equal({})
-        })
+            var votes = app.votes;
+            assert.equal(votes, {});
+        });
         it('should be incremented when vote is cast', function(){
-            app.countVotes('C')
-            app.votes.should.equal({
-                A: 0,
-                B: 0,
-                C: 1,
-                D: 0
-            })
-        })
-    })
-})
+            var count = app.countVotes({'1': 'C'});
+            assert.equal(count, { A: 0, B: 0, C: 1, D: 0 });
+        });
+    });
+});

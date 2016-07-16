@@ -7,6 +7,7 @@ var server = http.createServer(app)
                 .listen(port, function() {
                   console.log(`Listening on port ${port}.`)
                 })
+
 const socketIo = require('socket.io');
 const io = socketIo(server);
 var votes = {};
@@ -23,7 +24,7 @@ const countVotes = function(votes) {
     voteCount[votes[vote]]++
   }
   return voteCount;
-}
+};
 
 app.use(express.static('public'));
 
@@ -32,8 +33,6 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function (socket) {
-  console.log('A user has connected.', io.engine.clientsCount);
-
   io.sockets.emit('usersConnected', io.engine.clientsCount);
 
   socket.emit('statusMessage', 'You have connected.');
@@ -41,14 +40,12 @@ io.on('connection', function (socket) {
   socket.on('message', function (channel, message){
     if (channel === 'voteCast') {
       votes[socket.id] = message;
-      console.log(message)
       socket.emit('userVote', message)
       socket.emit('voteCount', countVotes(votes)); 
     }
   })
 
   socket.on('disconnect', function () {
-    console.log('A user has disconnected.', io.engine.clientsCount);
     delete votes[socket.id];
     socket.emit('voteCount', countVotes(votes))
     io.sockets.emit('usersConnected', io.engine.clientsCount);
@@ -61,6 +58,7 @@ module.exports = {
   countVotes: countVotes,
   votes: votes
 }
+
 
 
 
