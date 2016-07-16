@@ -22,7 +22,6 @@ socket.on('statusMessage', function(message) {
 });
 
 socket.on('voteCount', function(votes) {
-  
   for (var vote in votes) {
     var textNode = document.createTextNode(`${vote}: ${votes[vote]}`)
     voteTally.appendChild(textNode)
