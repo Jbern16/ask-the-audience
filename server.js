@@ -44,6 +44,7 @@ io.on('connection', function (socket) {
       console.log(message)
       socket.emit('userVote', message)
       socket.emit('voteCount', countVotes(votes));
+      io.socket.emit('voteCountAll', countVotes(votes));
     }
   })
 

@@ -5,6 +5,7 @@ var statusMessage = document.getElementById('status-message');
 var buttons = document.querySelectorAll('#choices button');
 var voteTally = document.getElementById('voteTally');
 var userVote = document.getElementById('user-vote')
+var voteTallyAll = document.getElementById('voteTallyAll');
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', function () {
@@ -27,6 +28,15 @@ socket.on('voteCount', function(votes) {
     voteTally.appendChild(textNode)
     var br = document.createElement("br")
     voteTally.appendChild(br)
+  }
+})
+
+socket.on('voteCountAll', function(votes){
+  for (var vote in votes) {
+    var textNode = document.createTextNode(`${vote}: ${votes[vote]}`)
+    voteTallyAll.appendChild(textNode)
+    var br = document.createElement("br")
+    voteTallyAll.appendChild(br)
   }
 })
 
